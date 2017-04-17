@@ -19,19 +19,28 @@ export default {
       todos: [{
         title: 'Todo A',
         project: 'Project A',
-        done: false
+        done: false,
+        color: '#3498db'
       }, {
         title: 'Todo B',
         project: 'Project B',
-        done: true
+        done: true,
+        color: '#41bfb3'
       }, {
         title: 'Todo C',
         project: 'Project C',
-        done: false
+        done: false,
+        color: '#ffc000'
       }, {
         title: 'Todo D',
         project: 'Project D',
-        done: false
+        done: false,
+        color: '#f24c3d'
+      }, {
+        title: 'Todo E',
+        project: 'Project E',
+        done: false,
+        color: '#559977'
       }]
     }
   }
@@ -40,6 +49,10 @@ export default {
 </script>
 
 <style>
+  html,body{
+    padding: 0;
+    margin: 0;
+  }
 /*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
