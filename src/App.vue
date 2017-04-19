@@ -19,7 +19,7 @@ export default {
       todos: [{
         title: 'Todo A',
         project: 'Project A',
-        done: false,
+        done: true,
         color: '#3498db'
       }, {
         title: 'Todo B',
