@@ -23,8 +23,7 @@
 <style scoped>
   .todo-list {
     width: auto;
-    background: #f2f2f2;
-    width: 500px;
+    background: #ffffff;
     text-align: left;
     padding-bottom: 20px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
