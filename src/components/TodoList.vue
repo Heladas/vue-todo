@@ -4,18 +4,27 @@
       <div>Completed: {{ todos.filter(todo =>{ return todo.done === true}).length }}</div>
       <div>In progress: {{ todos.filter(todo =>{ return todo.done === false}).length }}</div>
     </div>
-    <todo v-for="todo in todos" v-bind:todo="todo" :key="todo.id"></todo>
+    <todo v-on:delete-todo="deleteTodo" v-for="todo in todos" v-bind:todo="todo" :key="todo.id"></todo>
   </section>
 </template>
 
 <script type="text/javascript">
 
-  import todo from './Todo.vue'
+  import Todo from './Todo.vue'
 
   export default {
     props: ['todos'],
     components: {
-      todo
+      Todo
+    },
+    methods: {
+      deleteTodo (todo) {
+        const todoIndex = this.todos.indexOf(todo)
+        this.todos.splice(todoIndex, 1)
+      }
+//      addTodo () {
+//        console.log('AddTodo')
+//      }
     }
   }
 </script>

@@ -4,9 +4,10 @@
       <p class="title">{{todo.title}}</p>
       <p class="project">{{todo.project}}</p>
     </div>
+
+    <div class="delete" v-on:click="deleteTodo(todo)">Delete</div>
     <div class="edit" v-on:click="toggleForm">Edit</div>
-    <div class='status' v-show="todo.done">Completed</div>
-    <div class='status' v-show="!todo.done">Pending</div>
+    <div class='status'>{{ getStatus }}</div>
 
     <div class="content" v-show="isEditing">
       <div class='form'>
@@ -33,12 +34,18 @@
         isEditing: false
       }
     },
+    computed: {
+      getStatus: function () {
+        let status = (this.todo.done ? 'Completed' : 'Pending')
+        return status
+      }
+    },
     methods: {
       toggleForm () {
         this.isEditing = !this.isEditing
       },
-      hideForm () {
-        this.isEditing = false
+      deleteTodo (todo) {
+        this.$emit('delete-todo', todo)
       }
     }
   }
@@ -47,7 +54,7 @@
 
 <style scoped>
   .todo-item {
-    width: 300px;
+    width: 350px;
     /*height: 30px;*/
     margin: 10px 10px;
     color: black;
@@ -63,14 +70,15 @@
     margin: 10px auto 0;
   }
 
-  .todo-item .status, .todo-item .edit{
+  .todo-item .status, .todo-item .edit,.todo-item .delete{
     font-size: 14px;
     font-weight: bold;
     display: block;
     float: right;
     margin: 10px 5px 0;
   }
-  .todo-item .edit:hover{
+
+  .todo-item .edit:hover, .todo-item .delete:hover {
     text-decoration: underline;
     cursor: pointer;
   }

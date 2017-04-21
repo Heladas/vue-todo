@@ -1,18 +1,20 @@
 <template>
   <div id="app">
     <todo-list v-bind:todos="todos"></todo-list>
+    <create-todo v-on:add-todo="addTodo"></create-todo>
   </div>
 </template>
-
 <script>
 
 // import Hello from './components/Hello'
 import TodoList from './components/TodoList.vue'
+import CreateTodo from './components/CreateTodo.vue'
 
 export default {
   name: 'app',
   components: {
-    TodoList
+    TodoList,
+    CreateTodo
   },
   data () {
     return {
@@ -43,6 +45,11 @@ export default {
         color: '#559977'
       }]
     }
+  },
+  methods: {
+    addTodo (todo) {
+      this.todos.push(todo)
+    }
   }
 }
 
@@ -50,6 +57,7 @@ export default {
 
 <style>
   html,body{
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     padding: 0;
     margin: 0;
   }
