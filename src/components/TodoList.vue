@@ -1,11 +1,7 @@
 <template>
-  <section class="todo-list">
-    <div class="counter-block">
-      <div>Completed: {{ todos.filter(todo =>{ return todo.done === true}).length }}</div>
-      <div>In progress: {{ todos.filter(todo =>{ return todo.done === false}).length }}</div>
-    </div>
-    <todo v-on:delete-todo="deleteTodo" v-for="todo in todos" v-bind:todo="todo" :key="todo.id"></todo>
-  </section>
+  <div class="todo-list clearfix">
+    <todo v-on:toggle-status="toggleTodoStatus" v-on:delete-todo="deleteTodo" v-for="todo in todos" v-bind:todo="todo" :key="todo.id"></todo>
+  </div>
 </template>
 
 <script type="text/javascript">
@@ -21,10 +17,11 @@
       deleteTodo (todo) {
         const todoIndex = this.todos.indexOf(todo)
         this.todos.splice(todoIndex, 1)
+      },
+      toggleTodoStatus (todo) {
+        const todoIndex = this.todos.indexOf(todo)
+        this.todos[todoIndex].done = !this.todos[todoIndex].done
       }
-//      addTodo () {
-//        console.log('AddTodo')
-//      }
     }
   }
 </script>
@@ -38,11 +35,5 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  .counter-block {
-    margin: 0 0 20px 10px;
-    font-size: 16px;
-    font-weight: bold;
   }
 </style>

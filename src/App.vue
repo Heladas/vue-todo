@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div class="counter-block">
+      <div>Completed: {{ todos.filter(todo =>{ return todo.done === true}).length }}</div>
+      <div>In progress: {{ todos.filter(todo =>{ return todo.done === false}).length }}</div>
+    </div>
     <todo-list v-bind:todos="todos"></todo-list>
     <create-todo v-on:add-todo="addTodo"></create-todo>
   </div>
@@ -56,17 +60,37 @@ export default {
 </script>
 
 <style>
-  html,body{
+  html, body {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     padding: 0;
     margin: 0;
   }
-/*#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}*/
+
+  .clearfix:after {
+    content: "."; /* добавить содержимое: "." */
+    display: block; /* сделать блоком, т.к. inline не может иметь clear */
+    clear: both; /* с обеих сторон clear */
+    visibility: hidden; /* сделать невидимым, зачем нам точка внизу? */
+    height: 0; /* сделать высоту 0, чтобы не занимал место */
+  }
+
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+  }
+
+  .counter-block {
+    margin: 0 0 20px 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .todo-list, .create-todo {
+    float: left;
+  }
 </style>

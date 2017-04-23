@@ -1,27 +1,30 @@
 <template>
-  <div class='ui centered card todo-item' v-bind:style="{background: todo.color}">
-    <div class="info">
+  <div class='todo-item' v-bind:style="{background: todo.color}">
+    <div class="info noselect">
       <p class="title">{{todo.title}}</p>
       <p class="project">{{todo.project}}</p>
     </div>
 
-    <div class="delete" v-on:click="deleteTodo(todo)">Delete</div>
-    <div class="edit" v-on:click="toggleForm">Edit</div>
-    <div class='status'>{{ getStatus }}</div>
+    <div class="delete noselect" v-on:click="deleteTodo(todo)">Delete</div>
+    <div class="edit noselect" v-on:click="toggleForm">Edit</div>
+    <div class="status noselect" v-on:click="toggleTodoStatus(todo)">{{ getStatus }}</div>
 
     <div class="content" v-show="isEditing">
       <div class='form'>
         <div class='field'>
-          <label>Title</label>
+          <label class="noselect">Title</label>
           <input type='text' v-model="todo.title">
         </div>
         <div class='field'>
-          <label>Project</label>
+          <label class="noselect">Project</label>
           <input type='text' v-model="todo.project">
+        </div>
+        <div class='field'>
+          <label class="noselect">Color</label>
+          <input type='text' v-model="todo.color">
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -46,6 +49,9 @@
       },
       deleteTodo (todo) {
         this.$emit('delete-todo', todo)
+      },
+      toggleTodoStatus (todo) {
+        this.$emit('toggle-status', todo)
       }
     }
   }
@@ -78,7 +84,7 @@
     margin: 10px 5px 0;
   }
 
-  .todo-item .edit:hover, .todo-item .delete:hover {
+  .todo-item .status:hover, .todo-item .edit:hover, .todo-item .delete:hover {
     text-decoration: underline;
     cursor: pointer;
   }

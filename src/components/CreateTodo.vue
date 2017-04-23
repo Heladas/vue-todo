@@ -1,22 +1,24 @@
 <template>
-  <div class="create-todo">
+  <div class="create-todo clearfix">
     <div class="add-todo-btn" v-on:click="openForm" v-show="!isCreating">Add todo</div>
 
     <div class="add-form" v-show="isCreating">
-      <div>
+      <div class="field">
         <label>Title:</label>
         <input type="text" v-model="titleText" defaultValue="">
       </div>
-      <div>
+      <div class="field">
         <label>Project:</label>
         <input type="text" v-model="projectText" defaultValue="">
       </div>
-      <div>
+      <div class="field">
         <label>Color:</label>
         <input type="text" v-model="color">
       </div>
-      <div class="create" v-on:click="sendForm()">Create</div>
-      <div class="close" v-on:click="closeForm()">Close</div>
+      <div class="field">
+        <div class="create" v-on:click="sendForm()">Create</div>
+        <div class="close" v-on:click="closeForm()">Close</div>
+      </div>
     </div>
   </div>
 </template>
